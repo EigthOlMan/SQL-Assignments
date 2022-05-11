@@ -72,9 +72,41 @@ From Production.Product
 Where Name Like '%Crankarm' Or Name like '%Chainring%'
 Order By Name Desc
 
---7
+--7.
 
+Select ProductID, Name
+From Production.Product
+Where ProductID between 400 and 500
 
+--8.
 
+Select ProductID, Name, Color
+From Production.Product
+Where Color in ('Black','Blue')
 
+--9.
 
+Select *
+From Production.Product
+Where Name like 'S%'
+
+--10.
+
+Select Top 5 Name, ListPrice
+From Production.Product
+Where Name like 'A%' or Name like 'S%'
+Order By Name ASC
+
+--11.
+
+Select *
+From Production.Product
+Where Name like 'Spo[^k]%'
+Order By Name 
+
+--12.
+
+Select Distinct ProductSubcategoryID, Color
+From Production.Product
+Where ProductSubcategoryID is not NULL AND
+	  Color is not Null
