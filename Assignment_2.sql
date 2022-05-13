@@ -80,6 +80,86 @@ having sum(od.Quantity) > 100
 
 --9.
 
+Select s.CompanyName [Supplier Name], p.CompanyName [Shipper Name]
+From Suppliers s join Shippers p on 1=1
+
+--10.
+
+Select o.OrderDate, p.ProductName
+From Orders o join [Order Details] od on o.OrderID = od.OrderID join Products p on od.ProductID = p.ProductID
+order By o.OrderDate desc
+
+--11.
+
+Select e1.FirstName + ' ' + e1.LastName, e2.FirstName+ ' ' + e2.LastName
+From Employees e1 join Employees e2 on e1.Title = e2.Title
+where e1.FirstName <> e2.FirstName and e1.LastName <> e2.LastName
+
+--12.
+
+
+with cte
+as
+(
+select e1.EmployeeID [id] , count(e2.ReportsTo) [count]
+from Employees e1 join Employees e2 on e2.ReportsTo = e1.EmployeeID
+Group by e1.EmployeeID
+having count(e2.ReportsTo) > 1
+)
+select *
+From Employees e join cte c on c.id = e.EmployeeID
+where e.title like '%Manager'
+
+--13.
+
+Select City, CompanyName, ContactName, 'Customer' [Type]
+From Customers
+union 
+Select City, CompanyName, ContactName, 'Supplier' [Type]
+from Suppliers
+
+--14.
+
+Select City
+from Employees
+where City in (Select City from Customers)
+
+--15.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
