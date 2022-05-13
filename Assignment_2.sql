@@ -120,11 +120,13 @@ from Suppliers
 
 --14.
 
-Select City
+Select distinct City
 from Employees
 where City in (Select City from Customers)
 
 --15.
+
+
 
 
 
